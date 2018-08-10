@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour {
 
-    public WheelCollider[] front_wheels, back_wheels;
+    public WheelCollider[] front_wheels;
     public float maxSpeed = 500.0f;
     public float maxSteer = 30.0f;
 
@@ -17,8 +17,8 @@ public class CarController : MonoBehaviour {
         float steerA = Input.GetAxis("Horizontal") * maxSteer;
 
         // Setting the torque speed for both wheels
-        back_wheels[0].motorTorque = motorT;
-        back_wheels[1].motorTorque = motorT;
+        front_wheels[0].motorTorque = motorT;
+        front_wheels[1].motorTorque = motorT;
 
         // Setting the steering angle for both wheels
         front_wheels[0].steerAngle = steerA;
@@ -26,11 +26,11 @@ public class CarController : MonoBehaviour {
 
         // If the user stopped controlling, will pull the brakes. Otherwise, release them
         if(Mathf.Abs(Input.GetAxis("Vertical")) > 0.01f){
-            back_wheels[0].brakeTorque = 0;
-            back_wheels[1].brakeTorque = 0;
+            front_wheels[0].brakeTorque = 0;
+            front_wheels[1].brakeTorque = 0;
         }else{
-            back_wheels[0].brakeTorque = 220;
-            back_wheels[1].brakeTorque = 220;
+            front_wheels[0].brakeTorque = 220;
+            front_wheels[1].brakeTorque = 220;
         }
     }
 }
